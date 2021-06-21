@@ -14,19 +14,15 @@ app.use(cookieParser());
 app.use(express.json());
 
 const sessionConfig = {
-	secret: "MYSECRET",
-	name: "appName",
-	resave: false,
+	secret: "namdepzai",
 	saveUninitialized: false,
-	cookie: {
-		sameSite: "strict" // THIS is the config you are looing for.
-	}
+	resave: false
 };
 
-if (process.env.NODE_ENV === "production") {
-	app.set("trust proxy", 1); // trust first proxy
-	sessionConfig.cookie.secure = true; // serve secure cookies
-}
+// if (process.env.NODE_ENV === "production") {
+// 	app.set("trust proxy", 1); // trust first proxy
+// 	sessionConfig.cookie.secure = true; // serve secure cookies
+// }
 
 app.use(session(sessionConfig));
 
