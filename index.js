@@ -13,14 +13,22 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-app.use(
-	session({
-		resave: true,
-		saveUninitialized: true,
-		secret: "namdepzai",
-		cookie: { maxAge: 60000, httpOnly: true, sameSite: "None", secure: true }
-	})
-);
+const sessionConfig = {
+	secret: "MYSECRET",
+	name: "appName",
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		sameSite: "strict" // THIS is the config you are looing for.
+	}
+};
+
+if (process.env.NODE_ENV === "production") {
+	app.set("trust proxy", 1); // trust first proxy
+	sessionConfig.cookie.secure = true; // serve secure cookies
+}
+
+app.use(session(sessionConfig));
 
 app.use(
 	cors({
