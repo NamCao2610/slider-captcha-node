@@ -26,7 +26,8 @@ app.use(
 		keys: ["key1", "key2"],
 		maxAge: 60000,
 		sameSite: "lax",
-		secret: "namdepzai"
+		secret: "namdepzai",
+		secure: true
 	})
 );
 
