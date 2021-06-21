@@ -13,22 +13,22 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-const sessionConfig = {
-	secret: "namdepzai",
-	saveUninitialized: false,
-	resave: false,
-	cookie: {
-		domain: "http://localhost:3000",
-		secure: true
-	}
-};
+app.set("trust proxy", 1);
 
 // if (process.env.NODE_ENV === "production") {
 // 	app.set("trust proxy", 1); // trust first proxy
 // 	sessionConfig.cookie.secure = true; // serve secure cookies
 // }
 
-app.use(session(sessionConfig));
+app.use(
+	session({
+		name: "session",
+		keys: ["key1", "key2"],
+		maxAge: 60000,
+		sameSite: "lax",
+		secret: "namdepzai"
+	})
+);
 
 app.use(
 	cors({
