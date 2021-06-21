@@ -16,7 +16,11 @@ app.use(express.json());
 const sessionConfig = {
 	secret: "namdepzai",
 	saveUninitialized: false,
-	resave: false
+	resave: false,
+	cookie: {
+		domain: "http://localhost:3000",
+		secure: true
+	}
 };
 
 // if (process.env.NODE_ENV === "production") {
