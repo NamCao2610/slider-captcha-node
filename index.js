@@ -1,5 +1,5 @@
 const express = require("express");
-const session = require("cookie-session");
+const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
@@ -16,11 +16,11 @@ app.use(express.json());
 app.set("trust proxy", 1);
 
 app.use(
-	session({
+	cookieSession({
 		name: "session",
 		keys: ["key1", "key2"],
 		maxAge: 60000,
-		sameSite: "none",
+		sameSite: "none", //sameSite: "lax" neu tren development
 		secureProxy: true,
 		secret: "namdepzai"
 	})
@@ -29,7 +29,7 @@ app.use(
 app.use(
 	cors({
 		credentials: true,
-		origin: "http://localhost:3000"
+		origin: "http://localhost:3000" //link your domain
 	})
 );
 
