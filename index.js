@@ -25,7 +25,6 @@ app.use(
 		name: "session",
 		keys: ["key1", "key2"],
 		maxAge: 60000,
-		sameSite: true,
 		secret: "namdepzai",
 		secure: true
 	})
